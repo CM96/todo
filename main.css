@@ -1,0 +1,116 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background: #00d2ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #928DAB, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #928DAB, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
+    padding: 30px;
+    position: relative;
+    width:100vw;
+    height: 100vh;
+}
+.contenue{
+    margin: 15px auto;
+    box-shadow: 2px 2px 10px rgba(0,0,0, .7);
+    border-radius: 15px;
+    overflow: hidden;
+    width:60%;
+    opacity: .9;
+}
+/* HEADER */
+.contenue .contenue-header{
+    width:100%;
+    height:180px;
+    padding:20px;
+    background:  #03aacf;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #928DAB, #03aacf);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #928DAB, #03aacf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+/* BODY */
+.contenue .contenue-body{
+    background-color: rgb(256, 256, 256); 
+    padding:20px;
+    position: relative;
+
+}
+.contenue .contenue-body ul{
+    list-style: none;
+    margin-top:-54px;
+    background-color: white;
+    width: 100%;
+}
+li{
+    border-bottom:1px solid #0594b4;
+    padding:5px;
+    position: relative;
+}
+li span{
+    opacity: 0;
+    margin-right: 2px;
+    position: absolute;
+    top:10px;
+    right:8px;
+    transition:all .3s ease-in-out;
+}
+li:hover > span {
+    opacity: 1;
+    color:rgb(255, 27, 27);
+}
+
+/* FOOTER / FORM */
+.contenue .contenue-footer{
+    width:100%;
+    height:50px;
+}
+.contenue .contenue-footer #input-form{
+    height:100%;
+    display: flex;
+    align-items: center;
+
+}
+.contenue .contenue-footer #input-form input{
+    width:95%;
+    height: 100%;
+    padding:5px;
+}
+input[type='text']{
+    background-color:transparent;
+    outline:none;
+    border:0;
+
+}
+input[type='text']:focus{
+    outline:none;
+}
+input::-webkit-input-placeholder { /* Edge */
+    color: black;
+  }
+  
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: black;
+}
+  
+input::placeholder {
+    color: black;
+  }
+/* form button  */
+.contenue .contenue-footer #input-form button{
+    width:5%;
+    height: 100%;
+    outline:none;
+    border:0;
+    background-color: transparent;
+}
+
+button.button i{
+    font-size:30px;
+    /* do not forget to make it rotate on hover */
+}
+.line{
+    text-decoration: line-through;
+}
