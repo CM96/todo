@@ -3,10 +3,10 @@
     margin:0;
     box-sizing: border-box;
 }
-body{
-    background: #00d2ff;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #928DAB, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #928DAB, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ body{
+   background: #00d2ff;  
+    background: -webkit-linear-gradient(to right, #928DAB, #00d2ff);  
+    background: linear-gradient(to right, #928DAB, #00d2ff); 
     background-repeat: no-repeat;
     padding: 30px;
     position: relative;
@@ -31,6 +31,11 @@ body{
     background: linear-gradient(to right, #928DAB, #03aacf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+.contenue .contenue-header .header-title-time{
+    display: flex;
+    justify-content: space-around;
+
+}
 /* BODY */
 .contenue .contenue-body{
     background-color: rgb(256, 256, 256); 
@@ -44,12 +49,13 @@ body{
     background-color: white;
     width: 100%;
 }
+
 li{
     border-bottom:1px solid #0594b4;
     padding:5px;
     position: relative;
 }
-li span{
+li #trash{
     opacity: 0;
     margin-right: 2px;
     position: absolute;
@@ -57,9 +63,34 @@ li span{
     right:8px;
     transition:all .3s ease-in-out;
 }
-li:hover > span {
+li:hover > #trash {
     opacity: 1;
     color:rgb(255, 27, 27);
+}
+li input{
+    width:20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1;
+    margin: 4px 4px 0 4px;
+    /* opacity: 0; */
+}
+li #checkmark{
+
+    width:18px;
+    height: 18px;
+    border:1px solid #0594b4;
+    display: inline-block;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+li #checkmark:focus{
+    outline: none;
+}
+.bg{
+    background-image: url(./images/checkmark1.png);
+    background-size: cover;
+    background-position: center;
 }
 
 /* FOOTER / FORM */
@@ -113,4 +144,9 @@ button.button i{
 }
 .line{
     text-decoration: line-through;
+    /* color:#0594b4; */
+    color:#025d72;
+
 }
+
+/*  */

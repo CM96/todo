@@ -1,15 +1,18 @@
+//IMPORT OF FILES
+
+import CurrentDate,{Time} from './time.js';
+
 // DOM VARIABLES
 
 const button  = document.querySelector('button.button i');
 const list    = document.querySelector('#list');
 const newTodo = document.querySelector('input');
 const dateP   = document.getElementById('date-p');
+const timeH   = document.querySelector('.timeH');
 
 //VARIABLES FOR FUNCTIONALITY
 
 const trash = 'fas fa-trash delete';
-var key="todo";//for localstorage
-var count=0;//to change key of localstorage dynamically
 
 //get the key of a certain value from localstorage
 const getKey= (value)=>{
@@ -37,10 +40,13 @@ const initEl= (el)=>{
 
         // add span to li tag
         var span =  document.createElement("span");
-        // var checkbox=document.createElement('input');
+        var button=document.createElement('button');
         span.setAttribute('class',trash);
+        span.setAttribute('id', 'trash');
+        button.setAttribute('id', 'checkmark');
+        //appending children to li
+        li.appendChild(button);
         li.appendChild(span);
-
         //add text to li tag
         li.append(document.createTextNode(el));
     
@@ -84,14 +90,21 @@ const clearInput= ()=>{
 //function add to do
     //in local storage
     const addItem= todo => {
+        
+        var key="todo";//for localstorage
+        var count;//to change key of localstorage dynamically
+
         if(localStorage.length === 0){
-            localStorage.setItem(key,todo);
-            count++;
+            count=0;
+            localStorage.setItem(`${key}${count}`,todo);
 
         }else{
             // key+=count;//append a number at the end of key
+            var keys=Object.keys(localStorage);
+            var lastkey=keys[keys.length-1];
+            var lastelement=Number(lastkey[lastkey.length-1]);
+            count= lastelement+1;
             localStorage.setItem(`${key}${count}`,todo);            
-            count++;
         }
     };
     //in page
@@ -100,8 +113,9 @@ const clearInput= ()=>{
             alert('Please enter something on the input field');
         }
         else{
-            list.append(initEl(newTodo.value));
+            // list.append(initEl(newTodo.value)); // this might be the problem!!
             addItem(newTodo.value);
+            list.append(initEl(newTodo.value)); // this might be the problem!!
             clearInput();
         } 
     }
@@ -140,85 +154,25 @@ list.addEventListener('click',(event)=>{
 });
 // event to mark todo as completed
 list.addEventListener('click',function(){ 
-    if(event.target.tagName.toLowerCase() === "li"){
-         var li=  event.target;
+    if(event.target.tagName.toLowerCase() === "button"){
+         var li=  event.target.parentNode;
+         var button=event.target;
+         button.classList.toggle('bg');
         li.classList.toggle('line');
     }
 });
 
-//date
-const day =(index)=>{
-    var day;
-    switch(index){
-        case 1:
-            day= 'Sunday';
-            break;
-        case 2:
-            day= 'Monday';
-            break;
-        case 3:
-            day= 'Tuesday';
-            break;
-        case 4:
-            day= 'Wednesday';
-            break;
-        case 5:
-            day= 'Thursday';
-            break;
-        case 6:
-            day= 'Friday';
-            break;
-        case 7:
-            day= 'Saturday';
-            break;
-    }
-    return day;
+//DISPLAY DATE AND TIME
 
-}
-const month= (index)=>{
-    var month;
-    switch(index){
-        case 1:
-            month= 'January';
-            break;
-        case 2:
-            month= 'Febuary';
-            break;
-        case 3:
-            month= 'March';
-            break;
-        case 4:
-            month= 'April';
-            break;
-        case 5:
-            month= 'May';
-            break;
-        case 6:
-            month= 'June';
-            break;
-        case 7:
-            month= 'July';
-            break;
-        case 8:
-            month= 'August';
-            break;
-        case 9:
-            month= 'September';
-            break;
-        case 10:
-            month= 'October';
-            break;
-        case 11:
-            month= 'November';
-            break;
-        case 12:
-            month= 'December';
-            break;
-    }
-    return month;
-}
-//event to display current date
 function displayDate(){
-    var today= new Date();
-    dateP.innerHTML+=`${day(today.getDay()+1)} ${today.getDate()}, ${month(today.getMonth()+1)} ${today.getFullYear()}`;
+    let today= new Date();
+    const date= new CurrentDate();
+    dateP.innerHTML+=`${date.getDay(today.getDay()+1)},  ${date.getMonth(today.getMonth()+1)} ${today.getDate()}, ${today.getFullYear()}`;
 }
+function displayTime(){
+    let presentDay= new Date();
+    let time= new Time(presentDay.getHours(), presentDay.getMinutes(), presentDay.getSeconds());
+    timeH.innerHTML=time.getTime();
+}
+setInterval(displayTime, 1000);
+displayDate();
