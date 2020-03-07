@@ -56,7 +56,7 @@ const initEl= (el)=>{
 //RETRIEVE ALL SAVED TODOS FROM LOCALSTORAGE
 const getTodos= ()=>{
     let todos=[];//array of todos
-
+    
   //check if local storage is empty. if it is then return an empty list
     if(localStorage.length === 0) return todos;
   //if it's not then find key using a specific count
