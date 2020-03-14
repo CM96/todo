@@ -80,7 +80,7 @@ const displayExistingTodos=()=>{
         var li=initEl(item);
         list.append(li);
     }
-};
+}
 displayExistingTodos();
 
 //CLEAR INPUT FIELD AFTER SUBMITTING TODO
@@ -89,22 +89,34 @@ const clearInput= ()=>{
 }
 //function add to do
     //in local storage
+    //helper function to get the latest index of todos
+    const getNumber= todos=>{
+        let max=0;
+        for(var todo of todos){
+            let num=Number(todo[todo.length-1]);
+            if(num> max){
+                max=num;
+            }
+                
+        }
+        return max;
+    } 
     const addItem= todo => {
         
-        var key="todo";//for localstorage
-        var count;//to change key of localstorage dynamically
+        const key="todo";//for localstorage
+        let count;//to change key of localstorage dynamically
 
         if(localStorage.length === 0){
             count=0;
             localStorage.setItem(`${key}${count}`,todo);
 
         }else{
-            // key+=count;//append a number at the end of key
-            var keys=Object.keys(localStorage);
-            var lastkey=keys[keys.length-1];
-            var lastelement=Number(lastkey[lastkey.length-1]);
-            count= lastelement+1;
-            localStorage.setItem(`${key}${count}`,todo);            
+            // there is a bug here!!!
+
+            const keys=Object.keys(localStorage);
+            let lastkey=getNumber(keys);
+            count= lastkey+1;
+            localStorage.setItem(`${key}${count}`,todo);      
         }
     };
     //in page
@@ -113,9 +125,8 @@ const clearInput= ()=>{
             alert('Please enter something on the input field');
         }
         else{
-            // list.append(initEl(newTodo.value)); // this might be the problem!!
             addItem(newTodo.value);
-            list.append(initEl(newTodo.value)); // this might be the problem!!
+            list.append(initEl(newTodo.value)); 
             clearInput();
         } 
     }

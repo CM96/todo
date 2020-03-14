@@ -32,9 +32,14 @@
 
 }
 .contenue .contenue-header .header-title-time{
-    display: flex;
-    justify-content: space-around;
+   position: relative;
+   
 
+}
+.timeH{
+    position: absolute;
+    top:0;
+    right:0;
 }
 /* BODY */
 .contenue .contenue-body{
