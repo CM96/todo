@@ -83,7 +83,7 @@ export class Time{
     }
     getTime(){
        const p_o_a=(this.hour<12)? 'AM':'PM';
-       const hourF=(this.hour<12)? this.hour:this.hour-12;
+       const hourF=(this.hour<=12)? this.hour:this.hour-12;
        
        //add a 0 in front of nminutes or seconds if less than 10
        const minuteF=(this.minute<10)? `0${this.minute}`:this.minute;

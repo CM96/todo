@@ -4,7 +4,7 @@
 
 ## Description
 
-Todo app built using HTML, CSS, JavaScript. The app uses localstorage to store each todo and allow users not to loose their lists saved in their browser.
+Todo app built using HTML, CSS, JavaScript. The app uses localstorage to store each todo item into the user's browser.
 ___ 
 ## version 
 1.0.0
